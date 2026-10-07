@@ -2,54 +2,45 @@
   background-color: #fdfbf7;
   color: var(--indigo-950);
   position: relative;
-  overflow: hidden;
   padding: 10rem 0;
+  min-height: 100vh;
 }
 
-/* --- Massive Header --- */
-.headerBlock {
-  position: relative;
-  text-align: center;
-  padding-bottom: 5rem;
+/* --- Top Decorative Divider --- */
+.topDivider {
+  max-width: 1600px;
+  margin: 0 auto 6rem auto;
+  padding: 0 4rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
-.massiveTitle {
-  font-family: var(--font-sans);
-  font-size: clamp(6rem, 18vw, 15rem);
-  font-weight: 900;
-  line-height: 0.8;
-  letter-spacing: -0.05em;
-  margin: 0;
-  color: var(--indigo-900);
-  position: relative;
-  z-index: 2;
-  mix-blend-mode: difference;
-}
-
-.dot {
+.badge {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
   color: var(--saffron-500);
+  border: 1px solid var(--saffron-500);
+  padding: 0.5rem 1.2rem;
+  border-radius: 100px;
 }
 
-.introShape {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50vw;
-  height: 50vw;
-  background-color: var(--saffron-500);
-  border-radius: 50%;
-  z-index: 1;
+.line {
+  flex: 1;
+  height: 1px;
+  background-color: rgba(22, 18, 58, 0.1);
 }
 
 /* --- Content Layout --- */
 .contentLayout {
   display: flex;
-  gap: 5rem;
+  gap: 6rem;
   padding: 0 4rem;
   max-width: 1600px;
   margin: 0 auto;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .imageColumn {
@@ -57,125 +48,151 @@
 }
 
 .textColumn {
-  flex: 1;
+  flex: 1.2;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 /* --- Focal Image --- */
-.imageWrapper {
+.imageFrame {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
-  background-color: var(--indigo-950);
-  clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%); /* Start state */
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.8;
-  filter: grayscale(0.5) contrast(1.2);
+  filter: grayscale(0.2) contrast(1.1);
+  will-change: transform;
 }
 
-.imageOverlay {
+.geometricAccent {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  top: 2rem;
+  left: -2rem;
   width: 100%;
-  padding: 1.5rem;
-  background: linear-gradient(to top, rgba(22, 18, 58, 0.9), transparent);
-}
-
-.imageLabel {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  color: #fdfbf7;
+  height: 100%;
+  background-color: rgba(22, 18, 58, 0.04);
+  border: 1px solid rgba(22, 18, 58, 0.1);
+  z-index: 1;
 }
 
 /* --- Typography --- */
 .heading {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-size: clamp(3rem, 6vw, 5.5rem);
   font-weight: 800;
-  line-height: 0.9;
+  line-height: 0.95;
   letter-spacing: -0.02em;
   margin: 0;
   color: var(--indigo-900);
+  will-change: transform;
+}
+
+.headingAccent {
+  color: var(--saffron-500);
+  font-style: italic;
+  font-weight: 300;
 }
 
 .paragraph {
   font-family: var(--font-sans);
   font-size: 1.25rem;
-  line-height: 1.6;
+  line-height: 1.7;
   color: rgba(22, 18, 58, 0.7);
   max-width: 600px;
+  margin: 0;
 }
 
-/* --- Brutalist Stats --- */
+/* --- Detailed Stats Grid --- */
 .statsGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+  margin-top: 1rem;
+  border-top: 1px solid rgba(22, 18, 58, 0.1);
+  padding-top: 3rem;
 }
 
 .statBox {
   display: flex;
-  align-items: center;
-  gap: 2rem;
-  position: relative;
-}
-
-.statLine {
-  width: 50px;
-  height: 2px;
-  background-color: var(--saffron-500);
+  align-items: flex-start;
+  gap: 1.2rem;
 }
 
 .statNum {
   font-family: var(--font-mono);
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 700;
+  line-height: 0.8;
   color: var(--indigo-900);
-  width: 100px;
+}
+
+.statDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
 .statLabel {
   font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: rgba(22, 18, 58, 0.5);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(22, 18, 58, 0.8);
 }
 
+.statSub {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(22, 18, 58, 0.4);
+}
+
+/* --- Responsive --- */
 @media (max-width: 1024px) {
   .contentLayout {
     flex-direction: column;
     padding: 0 2rem;
-    gap: 4rem;
+    gap: 5rem;
   }
-  .imageWrapper {
+  .topDivider {
+    padding: 0 2rem;
+    margin-bottom: 4rem;
+  }
+  .imageFrame {
     aspect-ratio: 16 / 9;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .geometricAccent {
+    top: 1rem;
+    left: -1rem;
   }
 }
 
 @media (max-width: 768px) {
   .aboutContainer {
-    padding: 5rem 0;
+    padding: 6rem 0;
   }
-  .introShape {
-    width: 80vw;
-    height: 80vw;
+  .heading {
+    font-size: clamp(3rem, 12vw, 4.5rem);
   }
-  .statBox {
-    gap: 1rem;
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
-  .statNum {
-    font-size: 2rem;
-    width: 60px;
+  .imageFrame {
+    aspect-ratio: 4 / 3;
   }
 }
