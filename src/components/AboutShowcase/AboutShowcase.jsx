@@ -114,6 +114,7 @@ export default function AboutShowcase() {
           <div className={styles.leaderGrid}>
             <div className={styles.leaderCard}>
               <div className={styles.leaderImagePlaceholder}>
+                <img src="/shimithpr.jpg" alt="Shimith P R" className={styles.leaderImage} />
                 <div className={styles.geometricCut} />
               </div>
               <h3 className={styles.leaderName}>Shimith P R</h3>
@@ -122,6 +123,7 @@ export default function AboutShowcase() {
             
             <div className={styles.leaderCard}>
               <div className={styles.leaderImagePlaceholder}>
+                <img src="/jacobthomasv.jpg" alt="Dr. Jacob Thomas V" className={styles.leaderImage} />
                 <div className={styles.geometricCut} />
               </div>
               <h3 className={styles.leaderName}>Dr. Jacob Thomas V</h3>
