@@ -1,0 +1,227 @@
+/* ==========================================================================
+   FISAT — Design System
+   Palette is sampled from the FISAT emblem: the indigo gear, the saffron
+   sun-disc, the "Autonomous" orange and the red lamp flame. Base surface is
+   warm paper, not white; dark indigo is reserved for contrast moments.
+   ========================================================================== */
+
+:root {
+  /* ---- Brand primitives ------------------------------------------------ */
+  --indigo-950: #0d0a22;
+  --indigo-900: #16123a;
+  --indigo-800: #221b57;
+  --indigo-700: #3a3089; /* emblem gear */
+  --indigo-500: #5b52b0;
+  --indigo-200: #c9c5ea;
+
+  --saffron-600: #d9741a;
+  --saffron-500: #ee8b22; /* "AUTONOMOUS" */
+  --saffron-300: #f4b565; /* emblem sun disc */
+  --saffron-100: #fbe6c4;
+
+  --ember-500: #e2231a; /* lamp flame — use sparingly, signal only */
+
+  --paper-50: #fbf8f2;
+  --paper-100: #f5efe4;
+  --paper-200: #eae2d3;
+  --paper-300: #d9cfbd;
+
+  --stone-400: #a39dae;
+  --stone-500: #8a8496;
+  --stone-700: #4e4960;
+  --ink: #15122b;
+
+  /* ---- Semantic colour ------------------------------------------------- */
+  --color-bg: var(--paper-100);
+  --color-surface: var(--paper-50);
+  --color-text: var(--ink);
+  --color-text-muted: var(--stone-700);
+  --color-line: color-mix(in oklab, var(--ink) 14%, transparent);
+  --color-primary: var(--indigo-700);
+  --color-accent: var(--saffron-500);
+  --color-signal: var(--ember-500);
+
+  /* Legacy aliases (kept so older components keep compiling) */
+  --color-primary-dark: var(--indigo-800);
+  --color-secondary: var(--saffron-300);
+  --color-bg-dark: var(--indigo-950);
+  --color-text-dark: var(--paper-100);
+  --color-surface-dark: var(--indigo-900);
+
+  /* ---- Type families --------------------------------------------------- */
+  --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-heading: var(--font-display);
+  --font-body: var(--font-sans);
+
+  /* ---- Fluid type scale (360px → 1600px) -------------------------------
+     Ratio widens from ~1.2 on phones to ~1.333 on desktop so display sizes
+     get drama on large screens without crushing mobile.                    */
+  --fs-micro: clamp(0.6875rem, 0.67rem + 0.08vw, 0.75rem); /* 11–12  mono meta, labels   */
+  --fs-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem); /* 13–14  captions           */
+  --fs-body: clamp(1rem, 0.96rem + 0.18vw, 1.125rem); /* 16–18  reading            */
+  --fs-lead: clamp(1.1875rem, 1.1rem + 0.4vw, 1.5rem); /* 19–24  intros, phase text */
+  --fs-h4: clamp(1.375rem, 1.25rem + 0.6vw, 1.875rem); /* 22–30                     */
+  --fs-h3: clamp(1.75rem, 1.5rem + 1.1vw, 2.75rem); /* 28–44                     */
+  --fs-h2: clamp(2.25rem, 1.8rem + 2.2vw, 4.25rem); /* 36–68                     */
+  --fs-h1: clamp(3rem, 2.2rem + 4vw, 7rem); /* 48–112                    */
+  --fs-display: clamp(4rem, 2.5rem + 8vw, 12.5rem); /* 64–200  hero numerals     */
+
+  --lh-tight: 0.9;
+  --lh-snug: 1.08;
+  --lh-heading: 1.15;
+  --lh-body: 1.6;
+
+  --tr-display: -0.035em;
+  --tr-heading: -0.02em;
+  --tr-body: -0.006em;
+  --tr-label: 0.14em;
+  --tr-mono: 0.02em;
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+  --ease-soft: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-1: 160ms;
+  --dur-2: 320ms;
+  --dur-3: 640ms;
+  --dur-4: 1100ms;
+
+  /* ---- Space ----------------------------------------------------------- */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+  --gutter: clamp(1.25rem, 2.6vw, 2.75rem);
+
+  /* ---- Shape ----------------------------------------------------------- */
+  --radius-sm: 4px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+  --radius-organic: 24px 64px 24px 64px;
+  --shape-cutout: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+}
+
+/* ---- Reset ------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* While the loader is mounted the page cannot scroll. Driven by :has() so the
+   lock is applied in the very first SSR paint and released automatically when
+   the loader unmounts — no class juggling on <html>.                         */
+html:has([data-loader-active]) {
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--tr-body);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tr-heading);
+  font-variation-settings: "SOFT" 30, "WONK" 0;
+  margin-bottom: var(--space-sm);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--saffron-300);
+  color: var(--ink);
+}
+
+/* ---- Type roles -------------------------------------------------------- */
+.t-display {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-display);
+  font-weight: 400;
+  font-variation-settings: "SOFT" 50, "WONK" 1;
+}
+
+.t-label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+}
+
+.t-meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tr-mono);
+  font-variant-numeric: tabular-nums;
+  text-transform: uppercase;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- Shape utilities --------------------------------------------------- */
+.organic-image-wrapper {
+  border-radius: var(--radius-organic);
+  overflow: hidden;
+  position: relative;
+}
+
+.cutout-image-wrapper {
+  clip-path: var(--shape-cutout);
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
