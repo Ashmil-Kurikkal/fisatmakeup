@@ -14,6 +14,8 @@ export default function HomeShowcase() {
   const marqueeRef = useRef(null);
   const cutOutRef = useRef(null);
   const sweepRef = useRef(null);
+  const videoWrapperRef = useRef(null);
+  const focalImageRef = useRef(null);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -29,7 +31,40 @@ export default function HomeShowcase() {
         }
       });
 
-      // 2. Geometric Cut-out Sweep
+      // 2. Video Scale & Radius Animation (Bleeding Edge Scroll)
+      if (videoWrapperRef.current) {
+        gsap.fromTo(
+          videoWrapperRef.current,
+          { scale: 0.8, borderRadius: "80px" },
+          {
+            scale: 1,
+            borderRadius: "20px",
+            ease: "none",
+            scrollTrigger: {
+              trigger: videoWrapperRef.current,
+              start: "top bottom",
+              end: "center center",
+              scrub: true,
+            }
+          }
+        );
+      }
+
+      // 3. Focal Image Parallax
+      if (focalImageRef.current) {
+        gsap.to(focalImageRef.current, {
+          yPercent: 30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: focalImageRef.current.parentElement,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          }
+        });
+      }
+
+      // 4. Geometric Cut-out Sweep
       if (cutOutRef.current && sweepRef.current) {
         gsap.to(sweepRef.current, {
           yPercent: -100,
@@ -62,6 +97,24 @@ export default function HomeShowcase() {
         </div>
       </div>
 
+      {/* --- The Autoplay Video focal point --- */}
+      <section className={styles.videoSection}>
+        <div className={styles.videoHeader}>
+          <h3>CINEMATIC EXCELLENCE</h3>
+          <p>Experience the campus through our lens.</p>
+        </div>
+        <div className={styles.videoWrapper} ref={videoWrapperRef}>
+          <video 
+            src="/hero.webm" 
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            className={styles.videoElement}
+          />
+        </div>
+      </section>
+
       {/* --- The Brutalist Grid --- */}
       <section className={styles.gridSection}>
         <div className={styles.gridContainer}>
@@ -93,6 +146,23 @@ export default function HomeShowcase() {
             <div className={styles.blockArrow}>↗</div>
           </Link>
 
+        </div>
+      </section>
+
+      {/* --- Single High-Impact Focal Image Section --- */}
+      <section className={styles.focalSection}>
+        <div className={styles.focalLayout}>
+          <div className={styles.focalTypography}>
+            <h2>THE<br/>EPICENTER<br/>OF IDEA.</h2>
+          </div>
+          <div className={styles.focalImageContainer}>
+            <img 
+              ref={focalImageRef}
+              src="/fitimage/imgi_14_library-scaled.jpg" 
+              alt="FISAT Library" 
+              className={styles.focalImage}
+            />
+          </div>
         </div>
       </section>
 

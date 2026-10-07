@@ -34,6 +34,52 @@
   color: var(--saffron-500);
 }
 
+/* --- Video Section --- */
+.videoSection {
+  padding: 10rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--indigo-950);
+}
+
+.videoHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.videoHeader h3 {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--saffron-500);
+  margin: 0 0 1rem 0;
+}
+
+.videoHeader p {
+  font-family: var(--font-sans);
+  font-size: 1.5rem;
+  color: rgba(253, 251, 247, 0.6);
+  margin: 0;
+}
+
+.videoWrapper {
+  width: 75vw;
+  max-width: 1400px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  will-change: transform, border-radius;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+  /* default border-radius and scale set by GSAP */
+}
+
+.videoElement {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* --- Brutalist Grid --- */
 .gridSection {
   padding: 8rem 4rem;
@@ -104,6 +150,56 @@
   color: var(--saffron-400);
 }
 
+/* --- Focal Image Section --- */
+.focalSection {
+  padding: 10rem 4rem;
+  background-color: var(--indigo-950);
+  color: #fdfbf7;
+  display: flex;
+  justify-content: center;
+}
+
+.focalLayout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1400px;
+  gap: 4rem;
+}
+
+.focalTypography {
+  flex: 1;
+}
+
+.focalTypography h2 {
+  font-family: var(--font-sans);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: #fdfbf7;
+}
+
+.focalImageContainer {
+  flex: 1.5;
+  height: 80vh;
+  overflow: hidden;
+  border-radius: 20px;
+  position: relative;
+}
+
+.focalImage {
+  position: absolute;
+  top: -20%;
+  left: 0;
+  width: 100%;
+  height: 140%;
+  object-fit: cover;
+  will-change: transform;
+}
+
 /* --- Geometric Cut-out --- */
 .cutOutSection {
   position: relative;
@@ -127,7 +223,7 @@
   font-size: 22vw;
   line-height: 0.8;
   letter-spacing: -0.05em;
-  color: #fff; /* mix-blend-mode difference makes it visible */
+  color: #fff;
   text-align: center;
   margin: 0;
 }
@@ -179,7 +275,7 @@
   text-decoration: none;
   background: #fdfbf7;
   overflow: hidden;
-  border-radius: 0; /* Blocky */
+  border-radius: 0;
   transition: color 0.3s ease;
 }
 
@@ -212,14 +308,28 @@
   .gridContainer {
     grid-template-columns: 1fr;
   }
+  .focalLayout {
+    flex-direction: column;
+    text-align: center;
+  }
+  .focalImageContainer {
+    width: 100%;
+    height: 50vh;
+  }
 }
 
 @media (max-width: 768px) {
+  .videoWrapper {
+    width: 90vw;
+  }
   .gridSection {
     padding: 4rem 2rem;
   }
   .gridBlock {
     padding: 3rem 2rem;
+  }
+  .focalSection {
+    padding: 6rem 2rem;
   }
   .ctaSection {
     padding: 6rem 2rem;
