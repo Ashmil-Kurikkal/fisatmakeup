@@ -1,60 +1,151 @@
-.campus {
+.campusContainer {
   background-color: #fdfbf7;
-  color: var(--indigo-900);
-  padding: 8rem 0 4rem 0;
+  color: var(--indigo-950);
   position: relative;
-  z-index: 10;
+  overflow: hidden;
+  padding: 10rem 0;
+  min-height: 100vh;
 }
 
-.container {
-  max-width: 1400px;
+/* --- Massive BG Text --- */
+.massiveBgText {
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  font-family: var(--font-sans);
+  font-size: 25vw;
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  color: rgba(22, 18, 58, 0.03);
+  pointer-events: none;
+  z-index: 1;
+  will-change: transform;
+}
+
+/* --- Content Layout --- */
+.contentLayout {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 0 4rem;
+  gap: 6rem;
+}
+
+.visualBlock {
+  flex: 1;
+  position: relative;
+}
+
+.textBlock {
+  flex: 1;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.content {
-  max-width: 700px;
-  margin-bottom: 4rem;
-  text-align: right;
+/* --- Image Mask Reveal --- */
+.imageMask {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.2;
+  clip-path: polygon(50% 100%, 50% 100%, 50% 100%, 50% 100%); /* Star-like hidden state */
+  will-change: clip-path;
+  background-color: var(--indigo-950);
 }
 
+.campusImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  filter: grayscale(0.2) contrast(1.1);
+}
+
+.shapeOverlay {
+  position: absolute;
+  inset: 0;
+  border: 40px solid var(--saffron-500);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* --- Typography --- */
 .heading {
-  font-family: var(--font-sans);
-  font-weight: 900;
-  font-size: clamp(3rem, 5vw, 4.5rem);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  margin-bottom: 2rem;
-}
-
-.italic {
-  font-style: italic;
-  color: var(--saffron-500);
   font-family: var(--font-display);
-  font-weight: 400;
-  text-transform: none;
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--indigo-900);
 }
 
 .paragraph {
   font-family: var(--font-sans);
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 1.25rem;
+  line-height: 1.6;
   color: rgba(22, 18, 58, 0.7);
+  max-width: 600px;
+}
+
+/* --- Brutalist Tags --- */
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--indigo-900);
+  color: var(--indigo-900);
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  background-color: var(--indigo-900);
+  color: #fdfbf7;
+  transform: translateY(-5px);
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .contentLayout {
+    flex-direction: column-reverse;
+    padding: 0 2rem;
+    gap: 4rem;
+  }
+  .imageMask {
+    width: 80%;
+    margin: 0 auto;
+    aspect-ratio: 1;
+  }
 }
 
 @media (max-width: 768px) {
-  .campus {
-    padding: 5rem 0 3rem 0;
+  .campusContainer {
+    padding: 5rem 0;
   }
-  .container {
-    padding: 0 1.5rem;
-    justify-content: flex-start;
+  .imageMask {
+    width: 100%;
   }
-  .content {
-    text-align: left;
-    margin-bottom: 2rem;
+  .shapeOverlay {
+    border-width: 20px;
+  }
+  .tagsContainer {
+    flex-direction: column;
+  }
+  .tag {
+    text-align: center;
   }
 }

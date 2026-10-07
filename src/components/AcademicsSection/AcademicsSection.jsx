@@ -1,34 +1,63 @@
 "use client";
-import React from "react";
-import Carousel from "../Carousel/Carousel";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./AcademicsSection.module.css";
 
-const ACADEMICS_IMAGES = [
-  "/fitimage/imgi_10_IDEA-LAB-BANNER-scaled.jpg",
-  "/fitimage/imgi_14_library-scaled.jpg",
-  "/fitimage/imgi_25_eee-1.jpg",
-  "/fitimage/imgi_27_cse-banner.jpg",
-  "/fitimage/imgi_29_sh-banner-e1658151063916.jpg",
-];
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function AcademicsSection() {
+  const containerRef = useRef(null);
+  const marqueeRef = useRef(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      if (marqueeRef.current) {
+        gsap.to(marqueeRef.current, {
+          yPercent: -30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          }
+        });
+      }
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="academics" className={styles.academics}>
-      <div className={styles.container}>
-        <div className={styles.header}>
-          <h2 className={styles.heading}>
-            Future-Ready <span className={styles.italic}>Academics.</span>
-          </h2>
-          <p className={styles.paragraph}>
-            Our curriculum is designed to push boundaries. We blend rigorous theoretical foundations 
-            with hands-on practical applications in cutting-edge facilities like our AI labs and FabLabs.
+    <section className={styles.academicsContainer} ref={containerRef}>
+      
+      {/* Massive Vertical Marquee Background */}
+      <div className={styles.verticalMarquee} aria-hidden="true">
+        <div className={styles.marqueeTrack} ref={marqueeRef}>
+          ACADEMICS · ACADEMICS · ACADEMICS · ACADEMICS
+        </div>
+      </div>
+
+      <div className={styles.contentWrapper}>
+        
+        <div className={styles.introBlock}>
+          <h2 className={styles.introTitle}>ENGINEERED FOR<br/>THE FRONTIER.</h2>
+          <p className={styles.introText}>
+            Autonomous curriculum designed in collaboration with industry leaders. We blend rigorous theoretical foundations with hands-on practical applications in state-of-the-art AI labs and FabLabs.
           </p>
         </div>
 
-        <div className={styles.grid}>
-          <div className={styles.card}>
-            <h3 className={styles.cardTitle}>B.Tech Programs</h3>
-            <ul className={styles.list}>
+        <div className={styles.coursesGrid}>
+          
+          {/* B.Tech Column */}
+          <div className={styles.courseColumn}>
+            <div className={styles.columnHeader}>
+              <h3>B.TECH</h3>
+              <div className={styles.columnShape} />
+            </div>
+            <ul className={styles.courseList}>
               <li>Computer Science & Engineering</li>
               <li>Artificial Intelligence & Data Science</li>
               <li>Electronics & Communication</li>
@@ -37,9 +66,20 @@ export default function AcademicsSection() {
               <li>Electrical & Electronics</li>
             </ul>
           </div>
-          <div className={styles.card}>
-            <h3 className={styles.cardTitle}>Post Graduate</h3>
-            <ul className={styles.list}>
+
+          {/* Focal Image Divider */}
+          <div className={styles.focalDivider}>
+            <img src="/fitimage/imgi_10_IDEA-LAB-BANNER-scaled.jpg" alt="Idea Lab" className={styles.focalImg} />
+            <div className={styles.focalAccent} />
+          </div>
+
+          {/* PG Column */}
+          <div className={styles.courseColumn}>
+            <div className={styles.columnHeader}>
+              <h3>POSTGRAD</h3>
+              <div className={styles.columnShape} />
+            </div>
+            <ul className={styles.courseList}>
               <li>Master of Business Administration (MBA)</li>
               <li>Master of Computer Applications (MCA)</li>
               <li>M.Tech in VLSI & Embedded Systems</li>
@@ -47,10 +87,9 @@ export default function AcademicsSection() {
               <li>M.Tech in Computer Science</li>
             </ul>
           </div>
+
         </div>
       </div>
-      
-      <Carousel images={ACADEMICS_IMAGES} speed={45} reverse={true} title="Academic Infrastructure" />
     </section>
   );
 }
