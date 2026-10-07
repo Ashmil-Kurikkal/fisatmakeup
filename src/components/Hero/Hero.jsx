@@ -186,29 +186,6 @@ export default function Hero() {
       {/* ── Typography & Content ───────────────────────────────── */}
       <div className={styles.content}>
         
-        {/* Header / HUD */}
-        <header className={styles.header}>
-          <Link href="/" className={styles.brand} ref={setMeta} style={{ textDecoration: 'none' }}>
-            <span className={styles.logo}>FISAT</span>
-            <span className={styles.rule} aria-hidden="true" />
-            <span className={styles.subtext}>
-              Federal Institute of<br />Science and Technology
-            </span>
-          </Link>
-          <nav className={styles.nav} ref={setMeta}>
-            <div className={styles.navLinks}>
-              <Link href="/">Home</Link>
-              <Link href="/about">About</Link>
-              <Link href="/academics">Academics</Link>
-              <Link href="/campus-life">Campus Life</Link>
-              <Link href="/placements">Placements</Link>
-            </div>
-            <Link href="/apply" className={styles.applyBtn}>
-              APPLY NOW
-            </Link>
-          </nav>
-        </header>
-
         {/* Intro Typography */}
         <div className={styles.introBlock} ref={introRef}>
           <h1 className={styles.headline} ref={headlineRef}>
