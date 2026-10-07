@@ -76,12 +76,12 @@ export default function Hero() {
         0.4
       );
 
-      // Fade and slide in the overlay image
+      // Slide in the overlay image (no fade)
       if (overlayImageRef.current) {
         tl.fromTo(
           overlayImageRef.current,
-          { y: 150, opacity: 0, scale: 0.95 },
-          { y: 0, opacity: 1, scale: 1, duration: 2, ease: "power4.out" },
+          { y: 150, scale: 0.95 },
+          { y: 0, scale: 1, duration: 2, ease: "power4.out" },
           0.8
         );
       }
@@ -210,9 +210,6 @@ export default function Hero() {
 
         {/* Intro Typography */}
         <div className={styles.introBlock} ref={introRef}>
-          <div className={styles.badge} ref={setMeta}>
-            EST. 2002 — KERALA, INDIA
-          </div>
           <h1 className={styles.headline} ref={headlineRef}>
             <div className={styles.line}>
               {splitChars("ENGINEERING")}
@@ -224,6 +221,18 @@ export default function Hero() {
           <p className={styles.description} ref={setMeta}>
             A premier institution dedicated to excellence in education, research, and innovation. Empowering minds to shape tomorrow.
           </p>
+        </div>
+
+        {/* Side Info Blocks */}
+        <div className={styles.infoSides}>
+           <div className={styles.infoBlock} ref={setMeta}>
+               <h3 className={styles.infoTitle}>Innovation First</h3>
+               <p className={styles.infoText}>FISAT's state-of-the-art labs and research facilities empower students to pioneer the future of technology.</p>
+           </div>
+           <div className={`${styles.infoBlock} ${styles.infoBlockRight}`} ref={setMeta}>
+               <h3 className={styles.infoTitle}>Global Placement</h3>
+               <p className={styles.infoText}>With over 300+ recruiting partners, our graduates secure top-tier positions across the globe.</p>
+           </div>
         </div>
 
         {/* Footer / HUD */}

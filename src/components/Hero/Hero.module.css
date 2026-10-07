@@ -7,7 +7,7 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  min-height: 800px;
+  min-height: 650px;
   background-color: #fdfbf7;
   overflow: hidden;
   color: #1a1a1a;
@@ -33,7 +33,7 @@
 .bgElement {
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at top right, #ffffff 0%, #fdfbf7 60%);
+  background: radial-gradient(circle at top left, #eff4ff 0%, #fdfbf7 40%, #fff4e5 100%);
 }
 
 /* Deep cinematic grade over the video */
@@ -83,11 +83,11 @@
 .imageOverlayContainer {
   position: absolute;
   bottom: 0;
-  left: 48%; /* Moved to the left slightly */
+  left: 47%; /* Moved a bit to the left */
   transform: translateX(-50%);
   width: 100%;
-  max-width: 1100px; /* Made smaller */
-  height: 75%;
+  max-width: 800px; /* Made bigger */
+  height: 65%; /* Adjusted height */
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -125,7 +125,7 @@
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  color: #0a0a0a;
+  color: var(--indigo-900);
 }
 
 .rule {
@@ -150,7 +150,7 @@
   font-family: var(--font-mono);
   font-size: 0.8rem;
   letter-spacing: 0.1em;
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--indigo-900);
 }
 
 .navLinks {
@@ -165,7 +165,7 @@
 }
 
 .navLinks a:hover {
-  color: #000;
+  color: var(--saffron-600);
 }
 
 .applyBtn {
@@ -187,16 +187,14 @@
 .introBlock {
   position: absolute;
   top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 1.5rem;
-  z-index: 3;
-  width: 100%;
-  max-width: 800px;
+  z-index: 2; /* Put text behind the image overlay */
   pointer-events: none;
 }
 
@@ -206,20 +204,22 @@
   letter-spacing: 0.15em;
   padding: 0.5rem 1.2rem;
   border-radius: 100px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(22, 18, 58, 0.1);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(8px);
-  color: #0a0a0a;
+  color: var(--indigo-900);
 }
 
 .headline {
-  font-family: var(--font-fraunces);
-  font-variation-settings: "wght" 600, "SOFT" 100, "WONK" 0, "opsz" 144;
-  font-size: clamp(3rem, 6vw, 6rem);
-  line-height: 0.95;
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: 12.5vw;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
   margin: 0;
-  color: #0a0a0a;
+  color: var(--indigo-900);
+  width: 100%;
 }
 
 .description {
@@ -228,6 +228,67 @@
   line-height: 1.6;
   color: rgba(0, 0, 0, 0.6);
   max-width: 600px;
+  margin: 0;
+}
+
+/* ── Side Info Blocks ────────────────────────────────────────────────────────────── */
+.infoSides {
+  position: absolute;
+  bottom: 12%;
+  top: auto;
+  left: 0;
+  width: 100%;
+  padding: 0 5rem;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.infoBlock {
+  width: 250px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.infoBlockRight {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.infoTitle {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--indigo-800);
+  margin: 0;
+  position: relative;
+}
+
+.infoTitle::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background-color: var(--saffron-400);
+}
+
+.infoBlockRight .infoTitle::before {
+  left: auto;
+  right: 0;
+}
+
+.infoText {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.55);
   margin: 0;
 }
 
@@ -310,7 +371,7 @@
   .content {
     padding: 2rem;
   }
-  .subtext, .rule, .navLinks {
+  .subtext, .rule, .navLinks, .infoSides {
     display: none;
   }
   .headline {
