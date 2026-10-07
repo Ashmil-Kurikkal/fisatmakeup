@@ -210,19 +210,6 @@ export default function Hero() {
            </div>
         </div>
 
-        {/* Footer / HUD */}
-        <footer className={styles.footer}>
-          <div className={styles.coordinates} ref={setMeta}>
-            10.0154°N · 76.4897°E <br/>
-            MOOKKANNOOR, KERALA
-          </div>
-          <div className={styles.scrollBlock} ref={setMeta}>
-            <div className={styles.mouse}>
-              <div className={styles.wheel} />
-            </div>
-            <span className={styles.scrollText}>SCROLL TO EXPLORE</span>
-          </div>
-        </footer>
 
       </div>
     </section>
