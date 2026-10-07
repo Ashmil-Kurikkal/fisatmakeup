@@ -103,17 +103,23 @@
   .header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 3rem;
   }
   .grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 
 @media (max-width: 768px) {
+  .academics {
+    padding: 5rem 0 3rem 0;
+  }
   .container {
-    padding: 0 2rem;
+    padding: 0 1.5rem;
   }
   .card {
-    padding: 2rem;
+    padding: 1.5rem;
   }
 }

@@ -6,13 +6,13 @@ import styles from "./SiteHeader.module.css";
 export default function SiteHeader({ theme = "light" }) {
   return (
     <header className={styles.header} data-theme={theme}>
-      <div className={styles.brand}>
+      <Link href="/" className={styles.brand} style={{ textDecoration: 'none' }}>
         <span className={styles.logo}>FISAT</span>
         <span className={styles.rule} aria-hidden="true" />
         <span className={styles.subtext}>
           Federal Institute of<br />Science and Technology
         </span>
-      </div>
+      </Link>
       <nav className={styles.nav}>
         <div className={styles.navLinks}>
           <Link href="/">Home</Link>

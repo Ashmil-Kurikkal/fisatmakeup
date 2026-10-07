@@ -76,11 +76,17 @@
 }
 
 @media (max-width: 768px) {
+  .about {
+    padding: 5rem 0 3rem 0;
+  }
   .container {
-    padding: 0 2rem;
+    padding: 0 1.5rem;
   }
   .stats {
     flex-direction: column;
     gap: 2rem;
+  }
+  .content {
+    margin-bottom: 2rem;
   }
 }

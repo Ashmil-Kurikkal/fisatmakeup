@@ -78,12 +78,20 @@
 }
 
 @media (max-width: 768px) {
+  .placements {
+    padding: 5rem 0 3rem 0;
+  }
   .container {
-    padding: 0 2rem;
+    padding: 0 1.5rem;
+  }
+  .header {
+    margin-bottom: 2rem;
   }
   .stats {
     flex-direction: column;
     width: 100%;
     gap: 2rem;
+    padding: 2rem;
+    margin-bottom: 3rem;
   }
 }

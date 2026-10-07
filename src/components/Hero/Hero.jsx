@@ -188,13 +188,13 @@ export default function Hero() {
         
         {/* Header / HUD */}
         <header className={styles.header}>
-          <div className={styles.brand} ref={setMeta}>
+          <Link href="/" className={styles.brand} ref={setMeta} style={{ textDecoration: 'none' }}>
             <span className={styles.logo}>FISAT</span>
             <span className={styles.rule} aria-hidden="true" />
             <span className={styles.subtext}>
               Federal Institute of<br />Science and Technology
             </span>
-          </div>
+          </Link>
           <nav className={styles.nav} ref={setMeta}>
             <div className={styles.navLinks}>
               <Link href="/">Home</Link>

@@ -374,8 +374,16 @@
   .subtext, .rule, .navLinks, .infoSides {
     display: none;
   }
+  .introBlock {
+    top: 22%;
+  }
   .headline {
-    font-size: clamp(3.5rem, 15vw, 6rem);
+    font-size: clamp(4.5rem, 18vw, 6rem);
+    line-height: 0.9;
+  }
+  .imageOverlayContainer {
+    width: 135%;
+    left: 50%;
   }
   .footer {
     flex-direction: column;
