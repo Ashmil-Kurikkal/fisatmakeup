@@ -9,6 +9,10 @@ export const metadata = {
   title: "FISAT — Federal Institute of Science and Technology, Angamaly",
   description:
     "FISAT is an autonomous engineering and management institute in Angamaly, Kerala — NAAC A+ accredited, NBA accredited B.Tech programmes, affiliated to APJ Abdul Kalam Technological University.",
+  icons: {
+    icon: "/FISAT_LOGO.png",
+    apple: "/FISAT_LOGO.png",
+  },
 };
 
 export default function RootLayout({ children }) {

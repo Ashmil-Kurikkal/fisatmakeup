@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
@@ -16,6 +16,39 @@ export default function HomeShowcase() {
   const sweepRef = useRef(null);
   const videoWrapperRef = useRef(null);
   const focalImageRef = useRef(null);
+  const videoRef = useRef(null);
+  
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      const current = videoRef.current.currentTime;
+      const duration = videoRef.current.duration;
+      setProgress((current / duration) * 100);
+    }
+  };
+
+  const handleSeek = (e) => {
+    if (videoRef.current) {
+      const bar = e.currentTarget;
+      const rect = bar.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const newTime = (clickX / rect.width) * videoRef.current.duration;
+      videoRef.current.currentTime = newTime;
+    }
+  };
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -105,13 +138,32 @@ export default function HomeShowcase() {
         </div>
         <div className={styles.videoWrapper} ref={videoWrapperRef}>
           <video 
+            ref={videoRef}
             src="/hero.webm#t=1" 
             autoPlay 
             muted 
             loop 
             playsInline
             className={styles.videoElement}
+            onClick={togglePlay}
+            onTimeUpdate={handleTimeUpdate}
           />
+          <div className={styles.playerBar}>
+            <button className={styles.playButton} onClick={togglePlay} aria-label="Play/Pause">
+              {isPlaying ? (
+                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                  <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              )}
+            </button>
+            <div className={styles.progressBarContainer} onClick={handleSeek}>
+              <div className={styles.progressBar} style={{ width: `${progress}%` }} />
+            </div>
+          </div>
         </div>
       </section>
 
