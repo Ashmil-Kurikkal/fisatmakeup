@@ -3,6 +3,7 @@ import { fontVariables } from "./fonts";
 import SmoothScroller from "@/components/SmoothScroller/SmoothScroller";
 import { LoaderProvider } from "@/context/LoaderContext";
 import { HOME_PRELOAD } from "@/config/preload";
+import Footer from "@/components/Footer/Footer";
 
 export const metadata = {
   title: "FISAT — Federal Institute of Science and Technology, Angamaly",
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
         <LoaderProvider manifest={HOME_PRELOAD}>
           <main className="app-container" data-app>
             {children}
+            <Footer />
           </main>
         </LoaderProvider>
       </body>

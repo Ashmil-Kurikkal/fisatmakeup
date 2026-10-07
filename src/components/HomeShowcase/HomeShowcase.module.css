@@ -243,7 +243,7 @@
 
 /* --- CTA Section --- */
 .ctaSection {
-  padding: 10rem 4rem;
+  padding: 4rem 4rem 2rem 4rem;
   background-color: var(--indigo-950);
   text-align: center;
 }
@@ -256,10 +256,10 @@
 
 .ctaHeader {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 6vw, 5rem);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 600;
-  letter-spacing: -0.02em;
-  margin: 0 0 4rem 0;
+  letter-spacing: -0.01em;
+  margin: 0 0 2rem 0;
 }
 
 .ctaButton {
