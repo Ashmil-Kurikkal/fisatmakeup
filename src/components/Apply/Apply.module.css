@@ -1069,16 +1069,25 @@ select.input { appearance: none; background-image: linear-gradient(45deg, transp
 
 @media (max-width: 640px) {
   .hero { padding-top: calc(72px + var(--space-md)); }
+  .heroMeta { flex-direction: column; align-items: stretch; gap: 16px; }
+  .deadline { justify-content: center; }
+  .heroStats { text-align: center; }
   .grid { grid-template-columns: 1fr; }
   .twoCol { grid-template-columns: 1fr; }
   .rail { grid-template-columns: 1fr; }
   .archWrap { aspect-ratio: 4 / 4.6; border-radius: 120px 120px var(--radius-lg) var(--radius-lg); }
+  .formHead { flex-direction: column-reverse; align-items: flex-start; gap: 16px; }
+  .formCard { padding: 24px 20px; }
+  .seg { grid-template-columns: 1fr; }
   .navRow { flex-direction: column-reverse; align-items: stretch; }
   .btnPrimary, .btnGhost { justify-content: center; width: 100%; }
   .levelGrid { grid-template-columns: 1fr 1fr; }
   .stepDot span { display: none; }
-  .stepper { grid-template-columns: repeat(4, 1fr); }
+  .stepper { grid-template-columns: repeat(4, 1fr); padding: 10px; }
   .bandCap { padding: 24px; }
+  .bandStats { grid-template-columns: 1fr; }
+  .ticketGrid { grid-template-columns: 1fr; }
+  .ticketTitle { font-size: 2.2rem; }
   .hStripImg { height: 190px; }
 }
 
