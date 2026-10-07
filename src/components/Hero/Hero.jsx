@@ -219,9 +219,6 @@ export default function Hero() {
               {splitChars("THE FUTURE.")}
             </div>
           </h1>
-          <p className={styles.description} ref={setMeta}>
-            A premier institution dedicated to excellence in education, research, and innovation. Empowering minds to shape tomorrow.
-          </p>
         </div>
 
         {/* Side Info Blocks */}

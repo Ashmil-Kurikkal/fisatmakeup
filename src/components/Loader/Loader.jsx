@@ -242,7 +242,7 @@ export default function Loader({ manifest, onReveal, onComplete }) {
         <Reflection />
 
         <div className={styles.footer}>
-          <div className={styles.counterBlock}>
+          <div className={styles.counterBlock} data-counter>
             <Counter />
           </div>
         </div>

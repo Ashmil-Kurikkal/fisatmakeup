@@ -575,8 +575,18 @@
 
 @media (max-width: 640px) {
   .loader {
-    --horizon: 52%;
-    --sun-d: 62vw;
+    --horizon: 50%;
+    --sun-d: 65vw;
+  }
+  
+  .massiveLogo {
+    width: 30vw;
+    opacity: 0.15;
+  }
+
+  .topbar {
+    justify-content: center;
+    padding-top: 2.5rem;
   }
 
   .brandName,
@@ -586,8 +596,13 @@
 
   .footer {
     flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
+    align-items: center;
+    padding-bottom: 4rem;
+  }
+
+  .counterBlock {
+    transform: scale(1.4);
+    transform-origin: bottom center;
   }
 
   .status {
