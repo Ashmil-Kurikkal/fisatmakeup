@@ -105,7 +105,7 @@ export default function HomeShowcase() {
         </div>
         <div className={styles.videoWrapper} ref={videoWrapperRef}>
           <video 
-            src="/hero.webm" 
+            src="/hero.webm#t=1" 
             autoPlay 
             muted 
             loop 
