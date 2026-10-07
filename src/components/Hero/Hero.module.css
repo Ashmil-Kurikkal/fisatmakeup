@@ -378,7 +378,7 @@
     top: 28%;
   }
   .headline {
-    font-size: clamp(4.5rem, 18vw, 6rem);
+    font-size: clamp(3rem, 15vw, 5rem);
     line-height: 0.9;
   }
   .imageOverlayContainer {

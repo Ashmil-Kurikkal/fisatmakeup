@@ -33,21 +33,49 @@ export default function AboutShowcase() {
         });
       }
 
-      // Horizontal Scroll for Vision / Mission pinning
-      if (pinRef.current) {
-        let tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: pinRef.current,
-            start: "top top",
-            end: "+=150%",
-            pin: true,
-            scrub: 1,
-          }
-        });
-        
-        tl.to(visionRef.current, { xPercent: -100, ease: "none" }, 0)
-          .fromTo(missionRef.current, { xPercent: 100 }, { xPercent: 0, ease: "none" }, 0);
-      }
+      // Horizontal Scroll for Vision / Mission pinning (Desktop only)
+      let mm = gsap.matchMedia();
+
+      mm.add("(min-width: 769px)", () => {
+        if (pinRef.current) {
+          let tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: pinRef.current,
+              start: "top top",
+              end: "+=150%",
+              pin: true,
+              scrub: 1,
+            }
+          });
+          
+          tl.to(visionRef.current, { xPercent: -100, ease: "none" }, 0)
+            .fromTo(missionRef.current, { xPercent: 100 }, { xPercent: 0, ease: "none" }, 0);
+        }
+      });
+
+      mm.add("(max-width: 768px)", () => {
+        // Stack normally on mobile with simple fade up
+        if (visionRef.current) {
+          gsap.fromTo(visionRef.current,
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", scrollTrigger: {
+                trigger: visionRef.current,
+                start: "top 80%",
+              }
+            }
+          );
+        }
+        if (missionRef.current) {
+          gsap.fromTo(missionRef.current,
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", scrollTrigger: {
+                trigger: missionRef.current,
+                start: "top 80%",
+              }
+            }
+          );
+        }
+      });
     });
 
     return () => ctx.revert();

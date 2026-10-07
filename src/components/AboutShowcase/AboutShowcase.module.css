@@ -238,15 +238,51 @@
 /* --- Responsive --- */
 @media (max-width: 768px) {
   .heroContent {
-    padding: 0 2rem;
+    padding: 0 1.5rem;
+  }
+  .heroLabel {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    line-height: 1.4;
+  }
+  .heroTitle {
+    font-size: clamp(3rem, 12vw, 4.5rem);
   }
   .pinSection {
-    height: 80vh;
+    height: auto;
+  }
+  .pinContainer {
+    display: flex;
+    flex-direction: column;
   }
   .panel {
-    padding: 2rem;
+    position: relative;
+    padding: 4rem 1.5rem;
+    align-items: center;
+    min-height: auto;
+  }
+  .panelTitle {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .panelText {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+  .massiveWatermark {
+    font-size: 40vw;
+    top: 50%;
   }
   .leadershipSection {
-    padding: 5rem 2rem;
+    padding: 5rem 1.5rem;
+  }
+  .leadershipHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 4rem;
+  }
+  .leaderGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 }
