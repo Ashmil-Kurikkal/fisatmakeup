@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 import { useLoader } from "@/context/LoaderContext";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import styles from "./Hero.module.css";
@@ -196,15 +197,15 @@ export default function Hero() {
           </div>
           <nav className={styles.nav} ref={setMeta}>
             <div className={styles.navLinks}>
-              <a href="#home">Home</a>
-              <a href="#about">About</a>
-              <a href="#academics">Academics</a>
-              <a href="#campus">Campus Life</a>
-              <a href="#placements">Placements</a>
+              <Link href="/">Home</Link>
+              <Link href="/about">About</Link>
+              <Link href="/academics">Academics</Link>
+              <Link href="/campus-life">Campus Life</Link>
+              <Link href="/placements">Placements</Link>
             </div>
-            <a href="#admissions" className={styles.applyBtn}>
+            <Link href="/apply" className={styles.applyBtn}>
               APPLY NOW
-            </a>
+            </Link>
           </nav>
         </header>
 
