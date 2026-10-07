@@ -31,10 +31,10 @@ const PHASE_COPY = {
 };
 
 // Sky colour is a function of progress, not of time.
-const SKY_TOP = createGradientSampler(["#0d0a22", "#120e30", "#1b1541", "#251b4c"]);
-const SKY_MID = createGradientSampler(["#16123a", "#2a2262", "#553a73", "#8a5470"]);
-const SKY_HORIZON = createGradientSampler(["#221b57", "#57397a", "#b9645f", "#ee9a52", "#f6c27a"]);
-const GROUND_TOP = createGradientSampler(["#120e2e", "#1b1438", "#2a1b3b", "#3a2240"]);
+const SKY_TOP = createGradientSampler(["#e2e8f0", "#e0e7ff", "#eff6ff", "#fdfbf7"]);
+const SKY_MID = createGradientSampler(["#cbd5e1", "#c7d2fe", "#f8fafc", "#fff4e5"]);
+const SKY_HORIZON = createGradientSampler(["#94a3b8", "#a78bfa", "#f472b6", "#fb923c", "#fcd34d"]);
+const GROUND_TOP = createGradientSampler(["#cbd5e1", "#e0e7ff", "#fdfbf7", "#fdfbf7"]);
 
 export default function Loader({ manifest, onReveal, onComplete }) {
   const rootRef = useRef(null);
@@ -225,12 +225,6 @@ export default function Loader({ manifest, onReveal, onComplete }) {
               Science and Technology
             </span>
           </div>
-          <div className={styles.meta} data-exit-fade>
-            <span>Autonomous · Est. 2002</span>
-            <span>
-              Mookkannoor, Kerala · <LocalClock />
-            </span>
-          </div>
         </header>
       </div>
 
@@ -241,25 +235,10 @@ export default function Loader({ manifest, onReveal, onComplete }) {
       {/* ---------------- Ground ---------------- */}
       <div className={styles.ground} data-ground>
         <Reflection />
-        <Tagline text="Focus on Excellence" emphasis="Excellence" />
 
         <div className={styles.footer}>
           <div className={styles.counterBlock}>
-            <span className={styles.counterLabel} data-exit-fade>
-              Preparing the campus
-            </span>
             <Counter />
-          </div>
-
-          <div className={styles.status} data-exit-fade>
-            <p className={styles.phase} key={phase} aria-live="polite">
-              {PHASE_COPY[phase]}
-            </p>
-            <Manifest log={log} />
-            <p className={styles.totals} aria-hidden="true">
-              <span data-count>00 / {pad(manifest.images.length + 2)}</span>
-              <span data-bytes>Connecting…</span>
-            </p>
           </div>
         </div>
       </div>

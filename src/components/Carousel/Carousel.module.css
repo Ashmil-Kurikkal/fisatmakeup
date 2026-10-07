@@ -1,0 +1,103 @@
+.carouselWrapper {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%); /* Full bleed trick */
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.carouselTitle {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--indigo-800);
+  margin-left: clamp(2rem, 5vw, 6rem);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.carouselTitle::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to right, rgba(22, 18, 58, 0.1), transparent);
+}
+
+.carouselContainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+}
+
+/* Gradient masks for smooth fading at the edges */
+.carouselContainer::before,
+.carouselContainer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10vw;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.carouselContainer::before {
+  left: 0;
+  background: linear-gradient(to right, #fdfbf7, transparent);
+}
+
+.carouselContainer::after {
+  right: 0;
+  background: linear-gradient(to left, #fdfbf7, transparent);
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: scroll var(--speed) linear infinite;
+  padding-left: 2rem; /* Initial offset */
+}
+
+.carouselTrack:hover {
+  animation-play-state: paused;
+}
+
+.carouselTrack.reverse {
+  animation-direction: reverse;
+}
+
+.carouselItem {
+  width: clamp(280px, 25vw, 450px);
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  background: rgba(22, 18, 58, 0.05); /* Placeholder while loading */
+}
+
+.carouselItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.carouselItem:hover img {
+  transform: scale(1.08);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Translate exactly 1/3 of the width since we tripled the array */
+    transform: translateX(calc(-33.3333% - 0.6666rem)); 
+  }
+}

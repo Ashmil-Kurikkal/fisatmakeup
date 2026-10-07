@@ -1,0 +1,56 @@
+.campus {
+  background-color: #fdfbf7;
+  color: var(--indigo-900);
+  padding: 8rem 0 4rem 0;
+  position: relative;
+  z-index: 10;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.content {
+  max-width: 700px;
+  margin-bottom: 4rem;
+  text-align: right;
+}
+
+.heading {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.italic {
+  font-style: italic;
+  color: var(--saffron-500);
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: none;
+}
+
+.paragraph {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(22, 18, 58, 0.7);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 2rem;
+    justify-content: flex-start;
+  }
+  .content {
+    text-align: left;
+  }
+}

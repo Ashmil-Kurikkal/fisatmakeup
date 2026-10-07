@@ -8,10 +8,10 @@
 .loader {
   --p: 0;
   --pe: 0;
-  --sky-top: #0d0a22;
-  --sky-mid: #16123a;
-  --sky-horizon: #221b57;
-  --ground-top: #120e2e;
+  --sky-top: #e2e8f0;
+  --sky-mid: #cbd5e1;
+  --sky-horizon: #94a3b8;
+  --ground-top: #cbd5e1;
 
   --horizon: 60%;
   --sun-d: min(34vw, 46vh);
@@ -19,7 +19,7 @@
   position: fixed;
   inset: 0;
   z-index: 1000;
-  color: var(--paper-100);
+  color: var(--indigo-900);
   pointer-events: auto;
 }
 
@@ -214,7 +214,7 @@
 }
 
 .ray {
-  stroke: var(--saffron-100);
+  stroke: var(--indigo-200);
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-dasharray: 1;
@@ -248,7 +248,7 @@
   top: var(--horizon);
   height: 1px;
   margin-top: -0.5px;
-  background: rgb(251 230 196 / 0.12);
+  background: rgba(22, 18, 58, 0.12);
   z-index: 3;
   transform-origin: 50% 50%;
   pointer-events: none;
@@ -261,9 +261,9 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgb(251 230 196 / 0.9) 22%,
-    #fff3dc 50%,
-    rgb(251 230 196 / 0.9) 78%,
+    rgba(22, 18, 58, 0.2) 22%,
+    var(--indigo-900) 50%,
+    rgba(22, 18, 58, 0.2) 78%,
     transparent 100%
   );
 }
@@ -283,8 +283,8 @@
   background: linear-gradient(
     to bottom,
     var(--ground-top) 0%,
-    #100c28 42%,
-    #0b091d 100%
+    #fdfbf7 42%,
+    #fdfbf7 100%
   );
   will-change: transform, clip-path;
 }
@@ -376,7 +376,7 @@
   z-index: 2;
   margin-top: auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-end;
   gap: var(--space-md);
   padding: 0 var(--gutter) var(--gutter);
@@ -385,6 +385,7 @@
 .counterBlock {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.4rem;
 }
 
@@ -418,7 +419,7 @@
   font-variant-numeric: tabular-nums lining-nums;
   font-weight: calc(260 + var(--p) * 380);
   font-variation-settings: "opsz" 144, "SOFT" calc(100 - var(--p) * 100), "WONK" 0;
-  color: var(--paper-50);
+  color: var(--indigo-900);
 }
 
 .digitCol {
