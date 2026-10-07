@@ -1,0 +1,241 @@
+.aboutPageWrapper {
+  background-color: #fdfbf7;
+  overflow: hidden;
+}
+
+/* --- Hero Section --- */
+.heroSection {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.heroBg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.8) brightness(0.6);
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, #fdfbf7);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 10vh;
+}
+
+.heroLabel {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--saffron-400);
+}
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: #16123a; /* Dark indigo */
+  margin: 0;
+}
+
+.italic {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--saffron-500);
+}
+
+/* --- Pin Section (Vision & Mission) --- */
+.pinSection {
+  position: relative;
+  height: 100vh;
+  background-color: #16123a;
+  overflow: hidden;
+}
+
+.pinContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  will-change: transform;
+}
+
+.visionPanel {
+  background-color: #fdfbf7;
+  color: #16123a;
+  z-index: 2;
+}
+
+.missionPanel {
+  background-color: #16123a;
+  color: #fdfbf7;
+  z-index: 1;
+}
+
+.panelContent {
+  position: relative;
+  max-width: 800px;
+  z-index: 2;
+}
+
+.panelTitle {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--saffron-500);
+  margin-bottom: 2rem;
+}
+
+.panelText {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.massiveWatermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-sans);
+  font-size: 30vw;
+  font-weight: 900;
+  color: rgba(22, 18, 58, 0.03);
+  z-index: -1;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.missionPanel .massiveWatermark {
+  color: rgba(253, 251, 247, 0.03);
+}
+
+/* --- Leadership Section --- */
+.leadershipSection {
+  background-color: #fdfbf7;
+  padding: 10rem 4rem;
+}
+
+.leadershipContainer {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.leadershipHeader {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 6rem;
+}
+
+.leadershipHeader h2 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 900;
+  color: #16123a;
+  margin: 0;
+}
+
+.line {
+  flex: 1;
+  height: 2px;
+  background-color: #16123a;
+}
+
+.leaderGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 4rem;
+}
+
+.leaderCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.leaderImagePlaceholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background-color: #e5e5e5;
+  position: relative;
+  overflow: hidden;
+  filter: grayscale(1);
+}
+
+.geometricCut {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background-color: #fdfbf7;
+  clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+}
+
+.leaderName {
+  font-family: var(--font-sans);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #16123a;
+  margin: 1rem 0 0 0;
+}
+
+.leaderRole {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--saffron-500);
+  margin: 0;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .heroContent {
+    padding: 0 2rem;
+  }
+  .pinSection {
+    height: 80vh;
+  }
+  .panel {
+    padding: 2rem;
+  }
+  .leadershipSection {
+    padding: 5rem 2rem;
+  }
+}

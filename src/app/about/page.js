@@ -1,11 +1,11 @@
 import SiteHeader from "@/components/SiteHeader/SiteHeader";
-import AboutSection from "@/components/AboutSection/AboutSection";
+import AboutShowcase from "@/components/AboutShowcase/AboutShowcase";
 
 export default function AboutPage() {
   return (
     <main style={{ backgroundColor: "#fdfbf7", minHeight: "100vh" }}>
       <SiteHeader theme="light" />
-      <AboutSection />
+      <AboutShowcase />
     </main>
   );
 }
