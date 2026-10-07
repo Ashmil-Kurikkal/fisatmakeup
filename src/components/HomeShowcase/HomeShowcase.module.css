@@ -1,0 +1,230 @@
+.showcase {
+  background-color: var(--indigo-950);
+  color: #fdfbf7;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* --- Marquee --- */
+.marqueeContainer {
+  padding: 8rem 0;
+  overflow: hidden;
+  border-bottom: 2px solid rgba(253, 251, 247, 0.1);
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.marqueeTrack h2 {
+  font-family: var(--font-sans);
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  margin: 0;
+  padding-right: 2rem;
+  color: #fdfbf7;
+}
+
+.dot {
+  color: var(--saffron-500);
+}
+
+/* --- Brutalist Grid --- */
+.gridSection {
+  padding: 8rem 4rem;
+  background-color: #fdfbf7;
+  color: var(--indigo-950);
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px; /* For the borders */
+  background-color: var(--indigo-950);
+  border: 2px solid var(--indigo-950);
+}
+
+.gridBlock {
+  background-color: #fdfbf7;
+  padding: 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.gridBlock:hover {
+  background-color: var(--indigo-900);
+  color: #fdfbf7;
+}
+
+.blockNum {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--saffron-500);
+  margin-bottom: 3rem;
+}
+
+.blockTitle {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.blockDesc {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-bottom: 4rem;
+}
+
+.blockArrow {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 400;
+  align-self: flex-end;
+  transition: transform 0.3s ease;
+}
+
+.gridBlock:hover .blockArrow {
+  transform: translate(5px, -5px);
+  color: var(--saffron-400);
+}
+
+/* --- Geometric Cut-out --- */
+.cutOutSection {
+  position: relative;
+  height: 120vh;
+  background-color: #fdfbf7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cutOutTextWrapper {
+  position: relative;
+  z-index: 2;
+  mix-blend-mode: difference;
+}
+
+.cutOutText {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: 22vw;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: #fff; /* mix-blend-mode difference makes it visible */
+  text-align: center;
+  margin: 0;
+}
+
+.sweepShape {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150vw;
+  height: 150vw;
+  background-color: var(--saffron-500);
+  border-radius: 40%;
+  z-index: 1;
+  will-change: transform;
+}
+
+/* --- CTA Section --- */
+.ctaSection {
+  padding: 10rem 4rem;
+  background-color: var(--indigo-950);
+  text-align: center;
+}
+
+.ctaContent {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ctaHeader {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 4rem 0;
+}
+
+.ctaButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 4rem;
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--indigo-950);
+  text-decoration: none;
+  background: #fdfbf7;
+  overflow: hidden;
+  border-radius: 0; /* Blocky */
+  transition: color 0.3s ease;
+}
+
+.btnText {
+  position: relative;
+  z-index: 2;
+}
+
+.btnShape {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background-color: var(--saffron-500);
+  z-index: 1;
+  transition: height 0.3s ease;
+}
+
+.ctaButton:hover {
+  color: #fdfbf7;
+}
+
+.ctaButton:hover .btnShape {
+  height: 100%;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .gridSection {
+    padding: 4rem 2rem;
+  }
+  .gridBlock {
+    padding: 3rem 2rem;
+  }
+  .ctaSection {
+    padding: 6rem 2rem;
+  }
+  .cutOutSection {
+    height: 80vh;
+  }
+}

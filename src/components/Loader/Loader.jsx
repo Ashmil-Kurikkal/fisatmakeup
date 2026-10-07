@@ -41,7 +41,6 @@ export default function Loader({ manifest, onReveal, onComplete }) {
   const raysLitRef = useRef(0);
   const photoFlipRef = useRef(0);
 
-  /* --- discrete loading events → imperative DOM (no re-render) ----------- */
   const handleEvent = (state, event) => {
     const root = rootRef.current;
     if (!root) return;
@@ -55,8 +54,10 @@ export default function Loader({ manifest, onReveal, onComplete }) {
       const from = raysLitRef.current;
       for (let k = from; k < target; k++) {
         const ray = rays[RAY_ORDER[k]];
-        ray.style.transitionDelay = `${(k - from) * 55}ms`;
-        ray.dataset.lit = "";
+        if (ray) {
+          ray.style.transitionDelay = `${(k - from) * 55}ms`;
+          ray.dataset.lit = "";
+        }
       }
       raysLitRef.current = Math.max(from, target);
     }
@@ -64,7 +65,6 @@ export default function Loader({ manifest, onReveal, onComplete }) {
 
   const { stateRef, log, phase } = useAssetLoader(manifest, handleEvent);
 
-  /* --- per-frame render loop + exit choreography ------------------------- */
   useEffect(() => {
     const root = rootRef.current;
     const q = (s) => root.querySelector(s);
@@ -89,7 +89,7 @@ export default function Loader({ manifest, onReveal, onComplete }) {
     let tl = null;
 
     const write = (p) => {
-      const pe = 1 - (1 - p) * (1 - p); // ease-out for physical motion (sun altitude)
+      const pe = 1 - (1 - p) * (1 - p); 
       const s = root.style;
       s.setProperty("--p", p.toFixed(4));
       s.setProperty("--pe", pe.toFixed(4));
@@ -101,24 +101,24 @@ export default function Loader({ manifest, onReveal, onComplete }) {
       const n = Math.min(100, Math.floor(p * 100 + 1e-6));
       if (n !== lastInt) {
         lastInt = n;
-        cols[2].style.setProperty("--n", Math.floor(n / 100));
-        cols[1].style.setProperty("--n", Math.floor(n / 10));
-        cols[0].style.setProperty("--n", n);
-        cols[2].toggleAttribute("data-dim", n < 100);
-        cols[1].toggleAttribute("data-dim", n < 10);
-        cols[0].toggleAttribute("data-dim", n === 0);
-        progressEl.setAttribute("aria-valuenow", String(n));
+        if (cols[2]) cols[2].style.setProperty("--n", Math.floor(n / 100));
+        if (cols[1]) cols[1].style.setProperty("--n", Math.floor(n / 10));
+        if (cols[0]) cols[0].style.setProperty("--n", n);
+        if (cols[2]) cols[2].toggleAttribute("data-dim", n < 100);
+        if (cols[1]) cols[1].toggleAttribute("data-dim", n < 10);
+        if (cols[0]) cols[0].toggleAttribute("data-dim", n === 0);
+        if (progressEl) progressEl.setAttribute("aria-valuenow", String(n));
         for (let i = 0; i < chars.length; i++) {
-          if (p >= thresholds[i]) chars[i].dataset.on = "";
+          if (p >= thresholds[i] && chars[i]) chars[i].dataset.on = "";
         }
       }
     };
 
     const writeStats = (st) => {
       const count = `${pad(st.resourcesDone)} / ${pad(st.resourcesTotal)}`;
-      if (count !== lastCount) countEl.textContent = lastCount = count;
+      if (count !== lastCount && countEl) countEl.textContent = lastCount = count;
       const bytes = st.bytesTotal ? `${formatBytes(st.bytesLoaded)} of ${formatBytes(st.bytesTotal)}` : "Connecting…";
-      if (bytes !== lastBytes) bytesEl.textContent = lastBytes = bytes;
+      if (bytes !== lastBytes && bytesEl) bytesEl.textContent = lastBytes = bytes;
     };
 
     const playExit = () => {
@@ -133,23 +133,27 @@ export default function Loader({ manifest, onReveal, onComplete }) {
       const sky = q("[data-sky]");
       const ground = q("[data-ground]");
       const app = document.querySelector("[data-app]");
+      const logo = q("[data-fisat-logo]");
       const lens = { bend: 0 };
       const bendPx = Math.min(window.innerHeight * 0.24, 240);
-      const skyDepth = (bendPx / sky.offsetHeight) * 100;
-      const groundDepth = (bendPx / ground.offsetHeight) * 100;
+      const skyDepth = sky ? (bendPx / sky.offsetHeight) * 100 : 0;
+      const groundDepth = ground ? (bendPx / ground.offsetHeight) * 100 : 0;
+      
       const applyLens = () => {
-        sky.style.clipPath = lensPolygon("bottom", lens.bend * skyDepth);
-        ground.style.clipPath = lensPolygon("top", lens.bend * groundDepth);
+        if (sky) sky.style.clipPath = lensPolygon("bottom", lens.bend * skyDepth);
+        if (ground) ground.style.clipPath = lensPolygon("top", lens.bend * groundDepth);
       };
 
       tl = gsap.timeline({ onComplete });
       if (returning) tl.timeScale(1.35);
 
+      // We make the FISAT logo explode into the screen as the loader finishes
       tl.to(q("[data-flame]"), { scale: 1, opacity: 1, duration: 0.8, ease: "back.out(2.4)" }, 0)
         .to(q("[data-sun-body]"), { yPercent: -14, duration: 1.2, ease: "power3.inOut" }, 0)
         .to(qa("[data-exit-fade]"), { opacity: 0, y: -10, duration: 0.5, ease: "power2.in", stagger: 0.035 }, 0.12)
         .to(chars, { yPercent: -112, duration: 0.65, ease: "power3.in", stagger: { each: 0.014, from: "center" } }, 0.18)
         .to(q("[data-counter]"), { yPercent: -14, opacity: 0, duration: 0.6, ease: "power3.in" }, 0.24)
+        .to(logo, { scale: 20, opacity: 0, duration: 1.5, ease: "expo.in" }, 0.5) // LOGO ZOOM REVEAL
         .addLabel("open", 1.0)
         .to(q("[data-horizon]"), { scaleY: 3, opacity: 0, duration: 0.4, ease: "power2.out" }, "open")
         .to(lens, { bend: 1, duration: 1.3, ease: "expo.inOut", onUpdate: applyLens }, "open")
@@ -162,7 +166,7 @@ export default function Loader({ manifest, onReveal, onComplete }) {
           app,
           { scale: 1.06, transformOrigin: "50% 60%" },
           { scale: 1, duration: 1.7, ease: "expo.out", clearProps: "transform,transformOrigin" },
-          "open+=0.15",
+          "open+=0.15"
         );
       }
     };
@@ -171,8 +175,6 @@ export default function Loader({ manifest, onReveal, onComplete }) {
       const st = stateRef.current;
       if (!st || exiting) return;
 
-      // Honest smoothing: never ahead of real progress, never faster than
-      // minDuration allows, always some forward velocity while catching up.
       const dt = Math.min(deltaMs, 64) / 1000;
       const target = clamp01(st.progress);
       if (display < target) {
@@ -209,6 +211,9 @@ export default function Loader({ manifest, onReveal, onComplete }) {
         aria-valuenow={0}
         data-progressbar
       />
+
+      {/* Massive floating FISAT LOGO embedded in the sky */}
+      <img src="/FISAT_LOGO.png" alt="FISAT" className={styles.massiveLogo} data-fisat-logo />
 
       {/* ---------------- Sky ---------------- */}
       <div className={styles.sky} data-sky>

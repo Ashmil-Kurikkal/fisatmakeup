@@ -1,5 +1,6 @@
 import "./globals.css";
 import { fontVariables } from "./fonts";
+import SmoothScroller from "@/components/SmoothScroller/SmoothScroller";
 import { LoaderProvider } from "@/context/LoaderContext";
 import { HOME_PRELOAD } from "@/config/preload";
 
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={fontVariables}>
       <body>
+        <SmoothScroller />
         {/* Without JS the loader can never finish — hide it outright. */}
         <noscript>
           <style>{`[data-loader-active]{display:none!important}html{overflow:auto!important}`}</style>
